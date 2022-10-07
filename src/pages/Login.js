@@ -1,15 +1,21 @@
 import { useState } from 'react';
-const Login = () => {
+import '../components/products.css';
+import { useNavigate } from 'react-router-dom';
+const Login = ({setUser}) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const navigate=useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if(!name|| !email) return;
+    setUser({name:name ,email:email});
+    navigate('/dashboard')
   };
 
   return (
-    <section className='section'>
-      <form className='form' onSubmit={handleSubmit}>
+    <section className='section l'>
+      <form className='form k l' onSubmit={handleSubmit}>
         <h5>login</h5>
         <div className='form-row'>
           <label htmlFor='name' className='form-label'>
